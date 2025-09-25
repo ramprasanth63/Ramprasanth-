@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  title: Student Onboarding API
+  description: API for onboarding students (education details).
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/students/education-details:
+    post:
+      summary: Add a new student
+      tags:
+        - Student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
+      responses:
+        '201':
+          description: Student created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDTO'
+        '400':
+          description: Invalid input
+        '500':
+          description: Server Error
+components:
+  schemas:
+    StudentDTO:
+      type: object
+
+      properties:
+        firstName:
+          type: string
+        degree:
+          type: string
+        specialization:
+          type: string
+        institution:
+          type: string
+        cgpa:
+          type: number
+          format: double
+        year:
+          type: integer
+        location:
+          type: string
